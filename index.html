@@ -3,16 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenPolycom — open firmware for Polycom conference devices</title>
-<meta name="description" content="Run Debian on Polycom conference hardware: open firmware, a browser-based install wizard, and an apt archive for the TC8, Trio C60, and GC8.">
+<meta http-equiv="refresh" content="5;url=https://wizard.openpolycom.cc/">
+<title>OpenPolycom — coming soon</title>
+<meta name="description" content="Open firmware for Polycom conference-room hardware. Documentation coming soon — redirecting to the Setup Wizard.">
 <style>
 :root {
   --bg: #ffffff;
   --fg: #1a1d21;
   --muted: #5b6470;
   --accent: #0b6bcb;
-  --card: #f5f7f9;
-  --border: #dde3e9;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -20,25 +19,26 @@
     --fg: #e6e9ec;
     --muted: #9aa4af;
     --accent: #6cb2ff;
-    --card: #1d2126;
-    --border: #2c3238;
   }
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.6;
   background: var(--bg);
   color: var(--fg);
+  text-align: center;
+  padding: 1.5rem;
 }
-main { max-width: 52rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
-a { color: var(--accent); }
-h1, h2, h3 { line-height: 1.25; }
-header.hero { padding: 4rem 0 2rem; }
-header.hero h1 { font-size: 2.2rem; margin: 0 0 0.5rem; }
-header.hero p.tagline { font-size: 1.2rem; color: var(--muted); margin: 0 0 1.5rem; }
-.cta {
+main { max-width: 34rem; }
+h1 { font-size: 2.2rem; margin: 0 0 0.5rem; }
+p.sub { font-size: 1.15rem; color: var(--muted); margin: 0 0 2rem; }
+a.cta {
   display: inline-block;
   background: var(--accent);
   color: var(--bg);
@@ -47,103 +47,21 @@ header.hero p.tagline { font-size: 1.2rem; color: var(--muted); margin: 0 0 1.5r
   font-weight: 600;
   text-decoration: none;
 }
-.cta:hover { filter: brightness(1.1); }
-.cta-note { color: var(--muted); font-size: 0.9rem; margin-top: 0.6rem; }
-section { margin-top: 3rem; }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem 1.2rem;
-}
-.card h3 { margin-top: 0; }
-.card p { margin: 0.4rem 0; font-size: 0.95rem; }
-.card .soc { color: var(--muted); font-size: 0.85rem; }
-ul.docs { list-style: none; padding: 0; }
-ul.docs li { margin: 0.35rem 0; }
-ul.docs .what { color: var(--muted); }
-footer {
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.85rem;
-}
+a.cta:hover { filter: brightness(1.1); }
+p.redirect { color: var(--muted); font-size: 0.9rem; margin-top: 1rem; }
+p.redirect a { color: var(--accent); }
+footer { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; }
 </style>
 </head>
 <body>
 <main>
-
-<header class="hero">
   <h1>OpenPolycom</h1>
-  <p class="tagline">Open firmware for Polycom conference-room hardware. Mainline Linux, a plain Debian rootfs, and a browser-based installer.</p>
-  <a class="cta" href="https://wizard.openpolycom.cc">Flash a device — Setup Wizard</a>
-  <p class="cta-note">The wizard runs in the browser (WebUSB / Web Serial; Chrome or Edge) or as a native app. It unlocks the device and installs Linux — no soldering, no vendor tools.</p>
-</header>
-
-<section id="devices">
-  <h2>Supported devices</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>TC8</h3>
-      <p class="soc">NXP i.MX 8M Mini · 8″ touch panel</p>
-      <p>Video/touch control panel running as a Wayland kiosk: hardware-accelerated Chromium, Kodi media-player role, USB network gadget for development.</p>
-      <p><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build">poly-firmware-build</a> · flashes via the wizard</p>
-    </div>
-    <div class="card">
-      <h3>Trio C60</h3>
-      <p class="soc">NXP i.MX 8M Mini · conference phone</p>
-      <p>Smart conference phone with a portrait touch screen, speaker, and microphone array. Same build system as the TC8, with its own boot flow.</p>
-      <p><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build">poly-firmware-build</a> · flashes via the wizard</p>
-    </div>
-    <div class="card">
-      <h3>GC8</h3>
-      <p class="soc">Qualcomm APQ8053 · 8″ touch panel</p>
-      <p>Touch controller panel on a Qualcomm SoC: mainline kernel patches, Debian rootfs, fastboot/EDL flashing. Separate build tooling from the i.MX devices.</p>
-      <p><a href="https://github.com/Polycom-Open-Firmware/gc8-firmware-build">gc8-firmware-build</a> · flashes via fastboot/EDL</p>
-    </div>
-  </div>
-</section>
-
-<section id="docs">
-  <h2>Documentation</h2>
-
-  <h3>Install &amp; use</h3>
-  <ul class="docs">
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build/blob/main/QUICKSTART.md">Quickstart</a> — <span class="what">from stock device to running Linux</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build/blob/main/FLASHING.md">Flashing</a> — <span class="what">flashing paths and recovery</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build/blob/main/USING.md">Using</a> — <span class="what">life after the flash: profiles, configuration, updates</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/apt/blob/main/README.md">apt archive</a> — <span class="what">the project package archive: applications and role metapackages</span></li>
-  </ul>
-
-  <h3>Build from source</h3>
-  <ul class="docs">
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build/blob/main/BUILDING.md">Building firmware images</a> — <span class="what">the unified TC8/C60 image composer</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-kernel-patches">poly-kernel-patches</a> / <a href="https://github.com/Polycom-Open-Firmware/c60-kernel-patches">c60-kernel-patches</a> / <a href="https://github.com/Polycom-Open-Firmware/gc8-kernel-patches">gc8-kernel-patches</a> — <span class="what">mainline Linux 6.6 device support</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/polycom-uboot">polycom-uboot</a> — <span class="what">mainline U-Boot for the i.MX 8M Mini devices</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/packages/blob/main/README.md">packages</a> — <span class="what">Debian package monorepo</span></li>
-  </ul>
-
-  <h3>Under the hood</h3>
-  <ul class="docs">
-    <li><a href="https://github.com/Polycom-Open-Firmware/provisioner/blob/main/ARCHITECTURE.md">Wizard architecture</a> — <span class="what">how the browser unlocks and flashes a device</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build/blob/main/docs/RO-ROOT.md">Sealed rootfs design</a> — <span class="what">read-only root with a config partition</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/poly-firmware-build/blob/main/CONFIG-PARTITION.md">Config partition spec</a> — <span class="what">device configuration blob format</span></li>
-    <li><a href="https://github.com/Polycom-Open-Firmware/polycom_serial_adapter">Serial console adapter</a> — <span class="what">open-hardware USB-C to 1.8&nbsp;V console adapter for the TC8</span></li>
-  </ul>
-</section>
-
-<section id="project">
-  <h2>Project</h2>
-  <p>All source, issues, and releases live in the <a href="https://github.com/Polycom-Open-Firmware">Polycom-Open-Firmware</a> GitHub organization. Firmware images are published as GitHub release assets and flash directly from the <a href="https://wizard.openpolycom.cc">Setup Wizard</a>.</p>
-</section>
-
-<footer>
-  <p>OpenPolycom is a community project. It is not affiliated with, endorsed by, or supported by HP Inc. or Poly. "Polycom" and "Poly" are trademarks of their respective owners; device names identify the hardware the project targets.</p>
-  <p>Installing third-party firmware voids warranties and can render a device unbootable. Read the flashing documentation before starting.</p>
-</footer>
-
+  <p class="sub">Open firmware for Polycom conference-room hardware. Documentation coming soon.</p>
+  <a class="cta" href="https://wizard.openpolycom.cc/">Open the Setup Wizard</a>
+  <p class="redirect">Redirecting to the <a href="https://wizard.openpolycom.cc/">Setup Wizard</a> in a few seconds. Source lives in the <a href="https://github.com/Polycom-Open-Firmware">Polycom-Open-Firmware</a> GitHub organization.</p>
+  <footer>
+    <p>OpenPolycom is a community project, not affiliated with, endorsed by, or supported by HP Inc. or Poly.</p>
+  </footer>
 </main>
 </body>
 </html>
