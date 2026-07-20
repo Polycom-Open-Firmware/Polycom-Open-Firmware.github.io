@@ -1,0 +1,87 @@
+site_name: OpenPolycom
+site_url: https://openpolycom.cc/
+site_description: Open firmware for decommissioned Polycom conference hardware.
+repo_url: https://github.com/Polycom-Open-Firmware
+repo_name: Polycom-Open-Firmware
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - tables
+  - attr_list
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Devices:
+      - Which device do I have?: devices/index.md
+      - TC8: devices/tc8.md
+      - Trio C60: devices/c60.md
+  - Install:
+      - How installation works: install/index.md
+      - "TC8 quickstart": install/tc8.md
+      - "Trio C60 quickstart": install/c60.md
+      - Re-provisioning: install/reinstall.md
+      - Recovery: install/recovery.md
+  - Use:
+      - Getting in: use/access.md
+      - Storage model: use/storage.md
+      - Configuration reference: use/configure.md
+      - Applications:
+          - Choosing a role: use/applications/index.md
+          - Kiosk: use/applications/kiosk.md
+          - Media player: use/applications/media-player.md
+          - Smart speaker: use/applications/smart-speaker.md
+          - Developer: use/applications/developer.md
+      - Network boot: use/netboot.md
+      - Updating: use/updating.md
+      - Security and hardening: use/security.md
+  - Build:
+      - Source map: build/index.md
+      - Firmware images: build/firmware.md
+      - Debian rootfs: build/rootfs.md
+      - U-Boot: build/uboot.md
+      - Chromium: build/chromium.md
+  - Extend:
+      - Packages and profiles: extend/index.md
+      - Add an application: extend/add-an-app.md
+      - The apt archive: extend/apt-archive.md
+  - Internals:
+      - TC8 boot chain: internals/tc8-boot.md
+      - C60 boot chain: internals/c60-boot.md
+      - Sealed rootfs: internals/ro-root.md
+      - Config partition: internals/config-partition.md
+      - Releases and delivery: internals/releases.md
+      - Provisioner architecture: internals/provisioner.md
+      - Kernel: internals/kernel.md
+  - Project:
+      - Contributing: project/contributing.md
+      - License: project/license.md
