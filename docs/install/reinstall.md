@@ -36,21 +36,28 @@ survives — `/root` lives on a spare partition that reinstalls never touch
 
 ## Entering fastboot remotely
 
-For a panel that is installed somewhere fingers can't reach, the next
-boot can be aimed at fastboot from a shell. The bootloader honors a saved
-`gesture_sel` variable, and the image ships `/etc/fw_env-stage2.config`
-pointing at the stage-2 environment. To make the *next* boot land in
-fastboot — once, self-disarming:
+For a panel that is installed somewhere fingers can't reach, a shell
+reboots it straight into fastboot:
+
+```sh
+tc8-fastboot
+```
+
+The panel blanks its display and parks in the fastboot gadget on its USB
+data port. It is one-shot: the command travels as the AOSP
+`bootonce-bootloader` bootloader message in the `misc` partition, and the
+bootloader consumes it — the next power cycle boots the OS normally.
+Flash with the wizard (or plain `fastboot`), then `fastboot reboot`. The
+four-finger gesture is always available.
+
+Images without `tc8-fastboot` can do the same through the stage-2
+environment (`/etc/fw_env-stage2.config` points at it):
 
 ```sh
 fw_setenv -c /etc/fw_env-stage2.config gesture_sel \
   "setenv gesture_sel bootsel; saveenv; fastboot usb 0"
 reboot
 ```
-
-The panel restores the normal boot flow and parks in fastboot on its USB
-data port; flash with the wizard (or plain `fastboot`), then
-`fastboot reboot`. The local four-finger path keeps working regardless.
 
 ## Config and bootloader updates — no reflash needed
 

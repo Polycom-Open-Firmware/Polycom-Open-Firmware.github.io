@@ -32,8 +32,9 @@ Everything, on mainline-based Linux, shipping as tagged releases:
   stock bootloader environment — stable DHCP leases out of the box
 - Composite USB gadget on the data port: a serial console with a root
   login (`/dev/ttyACM0`), USB Ethernet (panel at `10.55.0.1`, ssh straight
-  off the cable), and MTP exposing the persistent `/root` as a "Portable
-  Device" for drag-and-drop
+  off the cable), and MTP exposing two "Portable Device" storages for
+  drag-and-drop: the persistent `/root` and the
+  [media folders](../use/applications/media-player.md)
 - A **sealed root filesystem**: the OS mounts read-only behind a tmpfs
   overlay, so reboots always come up pristine; `tc8-rw`/`tc8-ro` toggle a
   maintenance mode for permanent changes
